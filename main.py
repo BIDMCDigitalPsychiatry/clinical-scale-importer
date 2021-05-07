@@ -7,3 +7,4 @@ records = requests.post(os.getenv('API_URL', ''), data={
   'type': 'flat',
   'exportSurveyFields': 'true'
 }).json()
+print(records[0:2])
