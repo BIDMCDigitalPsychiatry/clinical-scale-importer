@@ -1,13 +1,14 @@
 import LAMP
 import requests
-LAMP.connect()
+LAMP.connect() # Please set env variables!
+
 count = 0
 for researcher in LAMP.Researcher.all()['data']:
     try:
         config = LAMP.Type.get_attachment(researcher['id'], 'org.digitalpsych.redcap.importer')['data']
         count += 1
     except LAMP.ApiException:
-        continue
+        continue # This Researcher is not configured for imports; ignore it.
     fields = {
         'token': config['API_TOKEN'],
         'content': 'record',
@@ -20,3 +21,4 @@ for researcher in LAMP.Researcher.all()['data']:
                              attachment_key='org.digitalpsych.redcap.data',
                              body=records)
     print(count)
+print("Finished importing data.")
