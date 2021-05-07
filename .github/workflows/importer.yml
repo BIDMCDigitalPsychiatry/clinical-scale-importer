@@ -1,7 +1,7 @@
 name: Run Importer
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "0 12 * * *"
   push:
     branches: [main]
 jobs:
@@ -18,4 +18,4 @@ jobs:
         LAMP_SERVER_ADDRESS: ${{ secrets.LAMP_SERVER_ADDRESS }}
       run: |
         pip install requests lamp-core
-        python main.py
+        python importer.py
