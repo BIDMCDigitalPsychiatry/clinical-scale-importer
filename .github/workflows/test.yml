@@ -17,5 +17,5 @@ jobs:
         LAMP_SECRET_KEY: ${{ secrets.LAMP_SECRET_KEY }}
         LAMP_SERVER_ADDRESS: ${{ secrets.LAMP_SERVER_ADDRESS }}
       run: |
-        pip install requests
+        pip install requests lamp-core
         python main.py
