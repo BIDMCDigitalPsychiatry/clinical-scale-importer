@@ -21,7 +21,7 @@ for researcher in LAMP.Researcher.all()['data']:
                              attachment_key='org.digitalpsych.redcap.data',
                              body=records)
     print(count)
-    if "IMPORT_SHARE_LINKS" in config:
+    if "IMPORT_SHARE_LINKS" in config and len(config["IMPORT_SHARE_LINKS"]) > 0:
         parts = []
         for study in LAMP.Study.all_by_researcher(researcher['id'])['data']:
             parts+=(p['id'] for p in LAMP.Participant.all_by_study(study['id'])['data'])
