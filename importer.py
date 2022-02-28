@@ -47,7 +47,7 @@ for researcher in LAMP.Researcher.all()['data']:
                         }
                         r = requests.post(config['API_URL'], data=data)
                         links[s] = r.text
-                    LAMP.Type.set_attachment(p, 'me',
+                    LAMP.Type.set_attachment(researcher['id'], p,
                                     attachment_key='org.digitalpsych.redcap.share_links',
                                     body=links)
 
