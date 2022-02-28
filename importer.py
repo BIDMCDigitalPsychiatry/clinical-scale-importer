@@ -1,4 +1,5 @@
 import LAMP
+import time
 import requests
 LAMP.connect() # Please set env variables!
 
@@ -19,8 +20,8 @@ for researcher in LAMP.Researcher.all()['data']:
     records = requests.post(config['API_URL'], data=fields).json()
     LAMP.Type.set_attachment(researcher['id'], 'me',
                              attachment_key='org.digitalpsych.redcap.data',
-                             body=records)
-    print(count)
+                             body={"updated": int(time.time()) * 1000,
+                                   "data": records})
     if "IMPORT_SHARE_LINKS" in config and len(config["IMPORT_SHARE_LINKS"]) > 0:
         parts = []
         for study in LAMP.Study.all_by_researcher(researcher['id'])['data']:
